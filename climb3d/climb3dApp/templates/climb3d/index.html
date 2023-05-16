@@ -8,9 +8,11 @@
                 {% csrf_token %}
                 <div class="selectBox">
                     <select name="location" id="location" onchange="this.form.submit()">
-                        <option>Select Location</option>
+                        <option selected disabled>{{ selectedLocation }}</option>
                         {% for location in locations %}
-                            <option value={{location.id}}>{{ location.location }}</option>
+                            {% if "location" != "selectedLocation" %}
+                                <option value={{location.id}}>{{ location.location }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                     <span class="selectArrow1"></span>
@@ -22,7 +24,7 @@
                 {% csrf_token %}
                 <div class="selectBox">
                     <select name="area" id="area" onchange="this.form.submit()">
-                        <option>Select Area</option>
+                        <option selected disabled>{{ selectedArea }}</option>
                         {% for area in areas %}
                             <option value={{area.id}}>{{ area.area }}</option>
                         {% endfor %}
@@ -35,7 +37,7 @@
             <form action="#" method="POST">
                 <div class="selectBox">
                     <select id="crag" onchange="this.form.submit()">
-                        <option>Select Crag</option>
+                        <option selected disabled>Select Crag</option>
                         {% for crag in crags %}
                             <option>{{ crag.crag }}</option>
                         {% endfor %}

@@ -27,30 +27,45 @@ def index(request):
         "locations": locations,
         "areas": areas,
         "crags": crags,
+        "selectedLocation": "Select Location",
+        "selectedArea": "Select Area"
     })
     
 def indexLocation(request):
     if request.method == "POST":
-        location = request.POST['location']
+        location = int(request.POST['location'])
+        selectedLocation = Location.objects.filter(id=location)
+        for location in selectedLocation:
+            selected = location.location
+        locations = Location.objects.all()
         areas = Area.objects.filter(location=location)
         crags = []
         for area in areas:
             crag = Crag.objects.filter(area=area)
             crags.append(crag)
         return render(request, "climb3d/index.html",{
-            "locations": location,
+            "locations": locations,
             "areas": areas,
             "crags": crags,
+            "selectedLocation": selected,
+            "selectedArea": "Select Area"
         })
     
 def indexArea(request):
     area = request.POST['area']
     locations = Location.objects.all()
+    selectedArea = Area.objects.filter(id=area)
+    for area in selectedArea:
+        selected = area.area
+        selectedLocation = area.location.location
     crags = Crag.objects.filter(area=area)
+    areas= Area.objects.all()
     return render(request, "climb3d/index.html",{
         "locations": locations,
-        "areas": area,
+        "areas": areas,
         "crags": crags,
+        "selectedLocation": selectedLocation,
+        "selectedArea": selected
     })
 
 def login_view(request):
