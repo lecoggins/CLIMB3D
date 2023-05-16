@@ -34,12 +34,13 @@
                 </div>
             </form>
 
-            <form action="#" method="POST">
+            <form action="{% url 'crag' %}" method="POST">
+                {% csrf_token %}
                 <div class="selectBox">
-                    <select id="crag" onchange="this.form.submit()">
+                    <select name="crag" id="crag" onchange="this.form.submit()">
                         <option selected disabled>Select Crag</option>
                         {% for crag in crags %}
-                            <option>{{ crag.crag }}</option>
+                            <option value={{ crag.id }}>{{ crag.crag }}</option>
                         {% endfor %}
                     </select>
                     <span class="selectArrow1"></span>

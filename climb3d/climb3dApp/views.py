@@ -51,22 +51,48 @@ def indexLocation(request):
             "selectedArea": "Select Area"
         })
     
+    else:
+        return HttpResponseRedirect(reverse("index"))
+    
 def indexArea(request):
-    area = request.POST['area']
-    locations = Location.objects.all()
-    selectedArea = Area.objects.filter(id=area)
-    for area in selectedArea:
-        selected = area.area
-        selectedLocation = area.location.location
-    crags = Crag.objects.filter(area=area)
-    areas= Area.objects.all()
-    return render(request, "climb3d/index.html",{
-        "locations": locations,
-        "areas": areas,
-        "crags": crags,
-        "selectedLocation": selectedLocation,
-        "selectedArea": selected
-    })
+    if request.method == "POST":
+        area = request.POST['area']
+        locations = Location.objects.all()
+        selectedArea = Area.objects.filter(id=area)
+        for area in selectedArea:
+            selected = area.area
+            selectedLocation = area.location.location
+        crags = Crag.objects.filter(area=area)
+        areas= Area.objects.all()
+        return render(request, "climb3d/index.html",{
+            "locations": locations,
+            "areas": areas,
+            "crags": crags,
+            "selectedLocation": selectedLocation,
+            "selectedArea": selected
+        })
+    else:
+        return HttpResponseRedirect(reverse("index"))
+    
+def crag(request):
+    if request.method == "POST":
+        selectedCrag = request.POST['crag']
+        cragData = Crag.objects.filter(id=selectedCrag)
+        for crag in cragData:
+            crag = crag.crag
+            area = crag.area.area
+            location = crag.area.location.location
+
+        return render(request,"climb3d/crag.html",{
+            "crag": crag,
+            "area": area,
+            "location": location
+        })
+    
+    
+    else:
+        return HttpResponseRedirect(reverse("index"))
+
 
 def login_view(request):
     if request.method == "POST":
@@ -117,3 +143,4 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "climb3d/register.html")
+    

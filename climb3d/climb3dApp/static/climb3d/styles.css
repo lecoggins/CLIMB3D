@@ -104,6 +104,11 @@ select:focus{
    margin: 20px;
 }
 
+.centerPage{
+    margin: 20px;
+    text-align: center;
+ }
+
 .hyperlink{
     color:rgb(231, 231, 231);
     font-size: 60px;
