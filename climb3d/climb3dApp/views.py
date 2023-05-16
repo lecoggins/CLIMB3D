@@ -10,12 +10,48 @@ from django.http import JsonResponse
 
 
 from .models import User
+from .models import Location
+from .models import Area
+from .models import Crag
+from .models import Route
+from .models import Style
+from .models import Grade
 
 # Create your views here.
 
 def index(request):
-        return render(request, "climb3d/index.html")
-
+    locations = Location.objects.all()
+    areas = Area.objects.all()
+    crags = Crag.objects.all()
+    return render(request, "climb3d/index.html",{
+        "locations": locations,
+        "areas": areas,
+        "crags": crags,
+    })
+    
+def indexLocation(request):
+    if request.method == "POST":
+        location = request.POST['location']
+        areas = Area.objects.filter(location=location)
+        crags = []
+        for area in areas:
+            crag = Crag.objects.filter(area=area)
+            crags.append(crag)
+        return render(request, "climb3d/index.html",{
+            "locations": location,
+            "areas": areas,
+            "crags": crags,
+        })
+    
+def indexArea(request):
+    area = request.POST['area']
+    locations = Location.objects.all()
+    crags = Crag.objects.filter(area=area)
+    return render(request, "climb3d/index.html",{
+        "locations": locations,
+        "areas": area,
+        "crags": crags,
+    })
 
 def login_view(request):
     if request.method == "POST":

@@ -1,0 +1,178 @@
+body{
+    background-color: rgb(49, 49, 49);
+    color:rgb(104, 104, 104);
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+}
+
+#backgroundVideo {
+    width: 100%;
+}
+
+.video-container {
+    z-index: -100;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+.overlay {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    text-align: center;
+    z-index:1;
+}
+
+.center{
+    top: 40%;
+    left: 14%;
+    text-align: center;
+    z-index:1;
+}
+
+.selectBox{
+    position: relative;
+    display: inline-block;
+    margin: 4px;
+}
+
+select{
+    font-size: 1.5rem;
+    padding: 1em 3.5em 1em 1.5em;
+    background: #23314e;
+    color: rgb(228, 228, 228);
+    border:0;
+    appearance: none;
+    width: 300px;
+}
+
+select:hover{
+    opacity: 100%;
+}
+
+select:focus{
+    border: none;
+}
+
+
+.selectArrow{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgb(12, 0, 66);
+    opacity: 70%;
+    display: block;
+    height: 100%;
+    width: 4rem;
+    pointer-events: none;
+}
+
+.selectArrow::before,
+.selectArrow::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height:0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.selectArrow::before{
+    border-left: 0.65em solid transparent;
+    border-right: 0.65em solid transparent;
+    border-top: 0.65em solid #23314e;
+    top: 40%;
+}
+
+.selectArrow::after{
+    border-left: 0.65em solid transparent;
+    border-right: 0.65em solid transparent;
+    border-bottom: 0.65em solid #23314e;
+    top: 60%;
+}
+
+
+.page{
+   margin: 20px;
+}
+
+.hyperlink{
+    color:rgb(231, 231, 231);
+    font-size: 60px;
+}
+
+
+a:link { text-decoration: none; }
+
+
+a:visited { text-decoration: none; }
+
+
+a:hover {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+a:active { text-decoration: none; }
+
+.navbar-custom {
+    background-color:rgb(66, 66, 66);
+    margin-left: 0px;
+    min-width: 500px;
+    min-height: auto;
+}
+
+.nav-link{
+    color:rgb(102, 102, 102);
+    margin-left: 0px;
+}
+
+.nav-link:hover{
+    color:rgb(24, 24, 24);
+}
+
+#nav_user_img{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    object-position: center;
+    margin-left: 0px;
+}
+
+#nav_logo{
+    width: 150px;
+    margin-left: 0px;
+}
+
+.btn-light{
+    background-color: rgb(66, 66, 66);
+    margin-bottom: 10px;
+    color:rgb(231, 231, 231)
+}
+
+.btn-light:hover{
+    background-color: rgb(231, 231, 231);
+    color:rgb(66, 66, 66)
+}
+
+input[type="text"], input[type="password"], input[type="email"]{
+    background-color: rgb(66, 66, 66);
+    padding: 10px 15px;
+    border-radius: 3px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="password"]:focus{
+    background-color: rgb(231, 231, 231);
+    outline-color: rgb(203, 209, 195);
+}
+
+input[type="password"]:focus{
+    outline:0;
+}

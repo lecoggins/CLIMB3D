@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>{% block title %}Social Network{% endblock %}</title>
+        <title>{% block title %}CLIMB3D{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="{% static 'climb3d/styles.css' %}" rel="stylesheet">
         <script src="{% static 'climb3d/script.js' %}"></script>
@@ -14,35 +14,22 @@
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-custom">
-            <a class="navbar-brand" href="{% url 'index' %}"><img src="images/CLIMB3D.png" alt="CLIMB3D"></img></a>
-          
+            <a class="navbar-brand" href="{% url 'index' %}"><img id="nav_logo" src="{% static '/climb3d/images/CLIMB3D.png' %}" alt="CLIMB3D"></a>
             <div>
               <ul class="navbar-nav mr-auto">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <img src={{ user.image }}>
+                        <img id="nav_user_img" src={{ user.image }}>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><strong>{{ user.username }}</strong></a>
                     </li>
                 {% endif %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'index' %}">All Posts</a>
-                </li>
                 {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Following</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                     </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'register' %}">Register</a>
-                    </li>
+                </div>
                 {% endif %}
               </ul>
             </div>
